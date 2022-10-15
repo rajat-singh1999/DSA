@@ -16,7 +16,7 @@ int pivotIndex(int *arr, int n)
 }
 
 int main(){
-    int arr[5] = {10,17,1,3,8};
+    int arr[7] = {9,10,17,1,3,7,8};
     cout<<"Pivot is "<<pivotIndex(arr, 5)<<endl;
     return 0;
 }

@@ -19,7 +19,24 @@ int isValid(vector<int> arr, int n, int m, int mid){
    return false;
 }
 
-int cooking_paratha(vector<int> arr, int n, int m){
+int cooking_paratha(vector<int> arr, int s, int e, int m, int ans){
+    int mid = s+((e-s)/2);
+    if(s>e)
+        return ans;
+    else if(isValid(arr, arr.size(), m, mid)){
+        ans=mid;
+        e=mid-1;
+    }
+    else
+        s=mid+1;
+    return cooking_paratha(arr, s, e, m, ans);
+}
+
+int main(){
+    vector<int> arr = {1,2,3,4};
+    int n=arr.size();
+    int m = 11;
+
     int maxi=0;
     for(int i=0;i<n;i++){
         maxi=max(maxi,arr[i]);
@@ -27,24 +44,9 @@ int cooking_paratha(vector<int> arr, int n, int m){
     int s=0,e=maxi*m;
     int mid = s+((e-s)/2);
     int ans=-1;
-
-    while(s<=e){
-        if(isValid(arr,n,m,mid)){
-            ans=mid;
-            e=mid-1;
-        }
-        else
-            s=mid+1;
-        mid=s+((e-s)/2);
-    }
-    return ans;
-}
-
-int main(){
-    vector<int> arr = {1,2,3,4};
-    int n=arr.size();
-    int m = 11;
-    cout<<cooking_paratha(arr, n, m)<<endl<<endl;
+    
+    cout<<cooking_paratha(arr, s, e, m, ans)<<endl<<endl;
+    cout<<isValid(arr, n, m,13)<<endl;
     return 0;
 }
 

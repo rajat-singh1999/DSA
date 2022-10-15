@@ -17,7 +17,7 @@ int peakIndexInMountainArray(vector<int>& arr) {
 }
 
 int main(){
-    vector<int> arr = {0,10,5,2};
+    vector<int> arr = {0,2,5,10,2};
     int n=9;
     int k=3;
     int ans = peakIndexInMountainArray(arr);
