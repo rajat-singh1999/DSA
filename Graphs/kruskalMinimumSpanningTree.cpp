@@ -37,7 +37,7 @@ void kruskalMST(int cost[][V])
 		int min = INT_MAX, a = -1, b = -1;
 		for (int i = 0; i < V; i++) {
 			for (int j = 0; j < V; j++) {
-				if (find(i) != find(j) && cost[i][j] < min) {
+				if (find(i) != find(j) && cost[i][j] < min) {  //CYCLE CHECK
 					min = cost[i][j];
 					a = i;
 					b = j;
@@ -46,8 +46,7 @@ void kruskalMST(int cost[][V])
 		}
 
 		union1(a, b);
-		printf("Edge %d:(%d, %d) cost:%d \n",
-			edge_count++, a, b, min);
+		printf("Edge %d:(%d, %d) cost:%d \n", edge_count++, a, b, min);
 		mincost += min;
 	}
 	printf("\n Minimum cost= %d \n", mincost);
