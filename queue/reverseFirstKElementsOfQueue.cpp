@@ -1,83 +1,57 @@
-//Driver Code Starts
+//{ Driver Code Starts
+// Initial Template for C++
+
 #include <bits/stdc++.h>
 using namespace std;
-
-vector<long long> printFirstNegativeInteger(long long int arr[],
-                                             long long int n, long long int k);
-
-// Driver program to test above functions
+queue<int> modifyQueue(queue<int> q, int k);
 int main() {
-    long long int t, i;
+    int t;
     cin >> t;
-    while (t--) {
-        long long int n;
-        cin >> n;
-        long long int arr[n];
-        for (i = 0; i < n; i++) {
-            cin >> arr[i];
+    while (t-- > 0) {
+        int n, k;
+        cin >> n >> k;
+        queue<int> q;
+        while (n-- > 0) {
+            int a;
+            cin >> a;
+            q.push(a);
         }
-        long long int k;
-        cin >> k;
-
-        vector<long long> ans = printFirstNegativeInteger(arr, n, k);
-        for (auto it : ans) cout << it << " ";
+        queue<int> ans = modifyQueue(q, k);
+        while (!ans.empty()) {
+            int a = ans.front();
+            ans.pop();
+            cout << a << " ";
+        }
         cout << endl;
     }
-    return 0;
 }
-
 // } Driver Code Ends
 
 
-vector<long long> printFirstNegativeInteger(long long int arr[],
-                                             long long int n, long long int k);
+// User function Template for C++
 
-// Driver program to test above functions
-
-
-vector<long long> printFirstNegativeInteger(long long int A[],
-                                             long long int N, long long int K) {
-         deque<long long int> dq;
-         vector<long long> ans;
-         int negative = -1;
-         
-         //process first window
-         for(int i=0; i<K; i++) {
-             if(A[i] < 0) {
-                 dq.push_back(i);
-             }
-         }
-         
-         //push ans for FIRST window
-         if(dq.size() > 0) {
-             ans.push_back(A[dq.front()]);
-         }
-         else
-         {
-             ans.push_back(0);
-         }
-         
-         //now process for remaining windows
-         for(int i = K; i<N; i++) {
-             //first pop out of window element
-             
-             
-             if(!dq.empty() && (i - dq.front())>=K ) {
-                 dq.pop_front();
-             }
-             
-             //then push current element
-             if(A[i] < 0)
-                dq.push_back(i);
-             
-            // put in ans
-            if(dq.size() > 0) {
-                 ans.push_back(A[dq.front()]);
-            }
-            else
-            {
-                ans.push_back(0);
-            }
-         }
-         return ans;
- }
+// Function to reverse first k elements of a queue.
+queue<int> modifyQueue(queue<int> q, int k) {
+    // add code here.
+    stack<int> st;
+    int n = q.size();
+    for(int i=0;i<k;i++){
+        int temp = q.front();
+        q.pop();
+        st.push(temp);
+    }
+    
+    while(!st.empty()){
+        int temp = st.top();
+        st.pop();
+        q.push(temp);
+    }
+    
+    for(int i=0;i<n-k;i++){
+        int temp = q.front();
+        q.pop();
+        q.push(temp);
+    }
+    
+    return q;
+}
