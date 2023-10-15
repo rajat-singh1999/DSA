@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
 using namespace std;
 
 bool check(vector<int>& nums) {
@@ -17,6 +18,6 @@ bool check(vector<int>& nums) {
 }
 
 int main(){
-    vector<int> arr = {1,2,7,4,5};
+    vector<int> arr = {1,2,7,4,5,0};
     cout<<check(arr)<<endl;
 }
